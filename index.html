@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz|Builder</title>
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/stlyle.css">
+</head>
+<body>
+    <section class="section-center">
+          <!-- Quiz setup form -->
+      <form action="" class="setup-form">
+        <h3> Quiz Builder</h3>
+        <small>build any kind of quiz with simple steps</small>
+        <div class="form-control">
+          <label for="author">Enter the author name for this quiz </label>
+          <input type="text" id="author" class="formInput"  name="author" placeholder="input author name">
+        </div>
+        <div class="form-control">
+          <label for="subject">Enter the subject of the quiz </label>
+          <input type="text" id="subject" class="formInput"  name="subject" placeholder="subject e.g html basics" >
+        </div>
+        <div class="form-control">
+          <label for="numOfQuiz">Set number of questions</label>
+            <div class="stepper">
+             <button class="minus" type="button" id="minus"><i class="fas fa-minus"></i></button>
+             <input id="numOfQuiz" class="formInput"  type="number" value="0" required>
+             <button class="plus" type="button"><i class="fas fa-plus" id="plus"></i></button>
+             </div>    
+        </div>
+
+         <div class="form-control">
+          <label for="numOfOptions">Set number of answerable options</label>
+            <div class="stepper">
+             <button class="add" type="button" id="minus"><i class="fas fa-minus"></i></button>
+             <input id="numOfOptions" class="formInput"  type="number" value="0" >
+             <button class="sub" type="button"><i class="fas fa-plus" id="plus"></i></button>
+             </div>    
+        </div>
+          <div class="form-group">
+            <label  for="testDuration">Select quiz Duration
+                 <select class="testDuration" class="formInput"  id="testDuration" >
+                     <option selected disabled hidden>select</option>
+                     <option>2mins</option>
+                     <option>5mins</option>
+                     <option>10mins</option>
+                     <option>15mins</option>
+                </select>
+                 <i class="fa fa-arrow-down select-arrow" aria-hidden="true"></i>
+            </label>
+            <div class="form-group">
+            <label  for="qstnDuration">Select each question Duration
+                 <select class="qstnDuration"  name="qstnDuration" class="formInput" id="qstnDuration">
+                     <option selected disabled hidden>select</option>
+                     <option >10s</option>
+                     <option>15s</option>
+                     <option>1mins</option>
+                     <option>1.5mins</option>
+                </select>
+                 <i class="fa fa-arrow-down select-arrow" aria-hidden="true"></i>
+            </label>   
+          </div>
+           <div class="form-group">
+            <label  for="backGroundColor">Select background color(optional)
+                 <select class="backGroundColor" name="backGroundColor" class="formInput" id="backGroundColor">
+                     <option value="" class="default">--Default--</option>
+                     <option class="skyblue">skyblue</option>
+                     <option class="pink">pink</option>
+                     <option class="orange">orange</option>
+                </select>
+                 <i class="fa fa-arrow-down select-arrow" aria-hidden="true"></i>
+            </label>   
+          </div>
+           <div class="form-group">
+            <label  for="answerColor">Select correct answer color(optional)
+                 <select class="answerColor" name="answerColor" class="formInput" id="answerColor">
+                     <option  class="green">green</option>
+                     <option class="purple">pink</option>
+                </select>
+                 <i class="fa fa-arrow-down select-arrow" aria-hidden="true"></i>
+            </label>   
+          </div>
+        <a href="./Q&A.html"><button class="submit-btn" type="submit">setup Quiz</button></a>
+      </form>
+        <p class="alert"></p>
+    </section>
+    <script src="./js/app.js"></script>
+</body>
+</html>

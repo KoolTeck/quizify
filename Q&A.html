@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q|A</title>
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+  <link rel="stylesheet" href="./css/q&a.css">
+</head>
+<body>
+    <section class="section-center">
+          <!-- Quiz Q&A form -->
+      <form action="" class="QandA-form">
+        <h3> question and answer details</h3>
+        <small>Ensure you type in the format given in the description</small>
+        <div>
+            Enter <span class="quiz-amount">5</span> question(s) 
+        </div> 
+              <div class="form-control">
+              <label for="question">
+                <textarea  name="question" id="question"  cols="30" rows="4" placeholder="1. what is html" required></textarea>
+              </label>
+            </div>
+
+            <div>
+                      Enter <span class="answer-amount">4</span> multiple answers 
+            </div>
+        <div class="option-container"> 
+            <div class="form-control">
+              <label for="answer" >  
+                <textarea name="answer" class="answer" id="answerOne" cols="30" rows="4" placeholder=
+                "(a) hypertext markup language answer
+    " required ></textarea>
+              </label>
+            </div>
+            <div class="form-control">
+              <label for="answer" >  
+                <textarea name="answer" class="answer" id="answerTwo"  cols="30" rows="4" placeholder=
+                "(b) hypertext mark lead
+    " required ></textarea>
+              </label>
+            </div>
+            <div class="form-control">
+              <label for="answer" >  
+                <textarea name="answer" class="answer" id="answerThree"  cols="30" rows="4" placeholder=
+                "(c) hybrid multi lang
+    " required ></textarea>
+              </label>
+            </div>
+        </div>
+        <!-- end otptions -->
+        <!-- add and remove buttons -->
+        <div class="toggle-container">
+          <span class="remove-answer">  <i class="fas fa-minus-square"></i>  remove answer</span>
+         <span class="add-answer"><i class="fas fa-plus-square"></i>   add answer</span>
+        </div>
+
+       <!-- button container -->
+       <div class="QAndABtn-container">
+             <button class="submit-btn" type="submit" id="setupBtn">setup Q&A</button>
+              <button class="submit-btn"  type="submit" id="startBtn">start quiz</button>
+       </div>
+      </form>
+      <p class="alert"></p>
+        <!--start quiz -->
+      
+    <section class="start-quiz default">
+       <!-- quiz container -->
+        <div class="quiz-container">
+             <!-- quiz header -->
+        <div class="quiz-header">
+            <h3>programming quiz</h3>
+            <h4>Instruction: choose the best answer from the list of options</h4>
+            <p>Duration: 10mins</p>
+            <article>author</article>
+        </div>
+        <!-- quiz content start -->
+        <div class="quiz-content">
+          
+         
+        </div>
+        <!-- quiz content end -->
+        </div>
+       <!-- quiz container end -->
+       <!-- set time out -->
+       <div class="set-time-out">
+         
+       </div>
+        
+    </section>
+       <!-- <p class="alert"></p> -->
+    </section>
+
+    
+    <script src="./js/q&a.js"></script>
+</body>
+</html>
