@@ -18,6 +18,7 @@ let quizAmount = document.querySelector(".quiz-amount");
 let answerAmount = document.querySelector(".answer-amount");
 let quizContent = quizInner.querySelector(".quiz-content");
 let optionContainer = document.querySelector(".option-container");
+let duration = quizInner.querySelector(".quiz-header p");
 
 //   getting the quizSetup from local storage
 let setupLocalStorage = JSON.parse(localStorage.getItem("quizSetup"));
@@ -108,7 +109,6 @@ if (questnAndAnslocal) {
 const startQuiz = () => {
   questnAndAnswerForm.classList.add("hide-QandA-form");
   quizInner.classList.add("reveal-quiz");
-  let duration = quizInner.querySelector(".quiz-header p");
   let quizSubject = quizInner.querySelector(".quiz-header h3");
   let quizAuthor = quizInner.querySelector(".quiz-header article");
   duration.innerText = `Duration: ${setupLocalStorage.quizDuration}`;
@@ -173,17 +173,15 @@ function setQuizDom(index, index0) {
   nextBtn.addEventListener("click", (eve) => {
     eve.preventDefault();
     setQuizDom(1, 1);
-    nextBtn.remove();
   });
 
   let newBtn1 = document.createElement("BUTTON");
   newBtn1.setAttribute("class", "submit-btn btn", "type", "button");
-  newBtn1.innerHTML = `qust 3`;
+  newBtn1.innerHTML = `quest. 3`;
   btnCont.appendChild(newBtn1);
   newBtn1.addEventListener("click", (eve) => {
     eve.preventDefault();
     setQuizDom(2, 2);
-    newBtn1.remove();
   });
 
   // adding more questions
@@ -224,7 +222,6 @@ function addQuestions() {
     newBtn2.addEventListener("click", (eve) => {
       eve.preventDefault();
       setQuizDom(3, 3);
-      newBtn2.remove();
     });
   }
   if (numOfQuestion >= 5) {
@@ -236,9 +233,9 @@ function addQuestions() {
     newBtn3.addEventListener("click", (eve) => {
       eve.preventDefault();
       setQuizDom(4, 4);
-      newBtn3.remove();
     });
   }
+
   if (numOfQuestion >= 6) {
     let btnCont = quizInner.querySelector(".btns-container");
     let newBtn4 = document.createElement("BUTTON");
@@ -248,7 +245,54 @@ function addQuestions() {
     newBtn4.addEventListener("click", (eve) => {
       eve.preventDefault();
       setQuizDom(5, 5);
-      newBtn4.remove();
+    });
+  }
+
+  if (numOfQuestion >= 7) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn5 = document.createElement("BUTTON");
+    newBtn5.setAttribute("class", "submit-btn", "type", "button");
+    newBtn5.innerHTML = `quest 7`;
+    btnCont.appendChild(newBtn4);
+    newBtn5.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(6, 6);
+    });
+  }
+
+  if (numOfQuestion >= 8) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn8 = document.createElement("BUTTON");
+    newBtn6.setAttribute("class", "submit-btn", "type", "button");
+    newBtn6.innerHTML = `quest 8`;
+    btnCont.appendChild(newBtn4);
+    newBtn6.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(7, 7);
+    });
+  }
+
+  if (numOfQuestion >= 9) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn7 = document.createElement("BUTTON");
+    newBtn7.setAttribute("class", "submit-btn", "type", "button");
+    newBtn7.innerHTML = `quest 9`;
+    btnCont.appendChild(newBtn4);
+    newBtn7.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(8, 8);
+    });
+  }
+
+  if (numOfQuestion >= 10) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn8 = document.createElement("BUTTON");
+    newBtn8.setAttribute("class", "submit-btn", "type", "button");
+    newBtn8.innerHTML = `quest 10`;
+    btnCont.appendChild(newBtn4);
+    newBtn8.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(9, 9);
     });
   }
 }
@@ -315,7 +359,8 @@ const getCountdown = () => {
   setTimeout(function () {
     quizContainer.remove();
     timeOutContainer.innerHTML = `
-                        <p>Time elapsed</p>
+                       <div class= "timeout-contents">
+                           <p>Time elapsed</p>
                                <br/>
                             <!-- timeout-btns -->
                       <div class="btns-container"> 
@@ -323,12 +368,32 @@ const getCountdown = () => {
                                 <button class="submit-btn reset" type="button">reset quiz</button>
                           </a>
                         <a href="Q&A.html">
-                                <button class="submit-btn" type="button">restart quiz</button>
+                                <button class="submit-btn restart" type="button">restart quiz</button>
                           </a>
-                      </div>`;
+                      </div>
+                       </div>`;
     let resetBtn = timeOutContainer.querySelector(".reset");
+    let restartBtn = timeOutContainer.querySelector(".restart");
+    let timeoutContents = timeOutContainer.querySelector(".timeout-contents");
     resetBtn.addEventListener("click", () => {
       removeFromStorage();
     });
+    restartBtn.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      quizInner.appendChild(quizContainer);
+      timeoutContents.remove();
+      getCountdown();
+    });
   }, quizCountDown);
 };
+
+// seeting countdoun
+let getDuration = parseFloat(
+  (duration.innerText = `Duration: ${setupLocalStorage.quizDuration}`)
+);
+
+function setDuration() {
+  setInterval(() => {
+    getDuration--;
+  }, quizCountDown);
+}
