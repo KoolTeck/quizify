@@ -1,6 +1,6 @@
 // Q & A form input variables
 const questnAndAnswerForm = document.querySelector(".QandA-form");
-const alert = document.querySelector(".alert");
+const alerts = document.querySelector(".alert");
 const quizQuestion = document.getElementById("question");
 const quizAnswers = document.getElementsByClassName("answer");
 const quizSetupBtn = document.getElementById("setupBtn");
@@ -19,7 +19,8 @@ let answerAmount = document.querySelector(".answer-amount");
 let quizContent = quizInner.querySelector(".quiz-content");
 let optionContainer = document.querySelector(".option-container");
 let duration = quizInner.querySelector(".quiz-header p");
-
+const seconds = duration.querySelector(".seconds");
+const minutes = duration.querySelector(".minutes");
 //   getting the quizSetup from local storage
 let setupLocalStorage = JSON.parse(localStorage.getItem("quizSetup"));
 setupLocalStorage = setupLocalStorage[0];
@@ -111,7 +112,6 @@ const startQuiz = () => {
   quizInner.classList.add("reveal-quiz");
   let quizSubject = quizInner.querySelector(".quiz-header h3");
   let quizAuthor = quizInner.querySelector(".quiz-header article");
-  duration.innerText = `Duration: ${setupLocalStorage.quizDuration}`;
   quizInner.style.background = `${setupLocalStorage.quizBackgroundColor}`;
   quizSubject.innerText = `subject: ${setupLocalStorage.quizSubject}`;
   quizAuthor.innerText = `author: ${setupLocalStorage.quizAuthor}`;
@@ -119,6 +119,7 @@ const startQuiz = () => {
     setQuizDom(0, 0);
   }
   getCountdown();
+  checkTime();
 };
 
 function setQuizDom(index, index0) {
@@ -253,7 +254,7 @@ function addQuestions() {
     let newBtn5 = document.createElement("BUTTON");
     newBtn5.setAttribute("class", "submit-btn", "type", "button");
     newBtn5.innerHTML = `quest 7`;
-    btnCont.appendChild(newBtn4);
+    btnCont.appendChild(newBtn5);
     newBtn5.addEventListener("click", (eve) => {
       eve.preventDefault();
       setQuizDom(6, 6);
@@ -262,10 +263,10 @@ function addQuestions() {
 
   if (numOfQuestion >= 8) {
     let btnCont = quizInner.querySelector(".btns-container");
-    let newBtn8 = document.createElement("BUTTON");
+    let newBtn6 = document.createElement("BUTTON");
     newBtn6.setAttribute("class", "submit-btn", "type", "button");
     newBtn6.innerHTML = `quest 8`;
-    btnCont.appendChild(newBtn4);
+    btnCont.appendChild(newBtn6);
     newBtn6.addEventListener("click", (eve) => {
       eve.preventDefault();
       setQuizDom(7, 7);
@@ -277,7 +278,7 @@ function addQuestions() {
     let newBtn7 = document.createElement("BUTTON");
     newBtn7.setAttribute("class", "submit-btn", "type", "button");
     newBtn7.innerHTML = `quest 9`;
-    btnCont.appendChild(newBtn4);
+    btnCont.appendChild(newBtn7);
     newBtn7.addEventListener("click", (eve) => {
       eve.preventDefault();
       setQuizDom(8, 8);
@@ -289,10 +290,70 @@ function addQuestions() {
     let newBtn8 = document.createElement("BUTTON");
     newBtn8.setAttribute("class", "submit-btn", "type", "button");
     newBtn8.innerHTML = `quest 10`;
-    btnCont.appendChild(newBtn4);
+    btnCont.appendChild(newBtn8);
     newBtn8.addEventListener("click", (eve) => {
       eve.preventDefault();
       setQuizDom(9, 9);
+    });
+  }
+
+  if (numOfQuestion >= 11) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn9 = document.createElement("BUTTON");
+    newBtn9.setAttribute("class", "submit-btn", "type", "button");
+    newBtn9.innerHTML = `quest 11`;
+    btnCont.appendChild(newBtn9);
+    newBtn9.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(10, 10);
+    });
+  }
+
+  if (numOfQuestion >= 12) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn10 = document.createElement("BUTTON");
+    newBtn10.setAttribute("class", "submit-btn", "type", "button");
+    newBtn10.innerHTML = `quest 12`;
+    btnCont.appendChild(newBtn10);
+    newBtn10.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(11, 11);
+    });
+  }
+
+  if (numOfQuestion >= 13) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn11 = document.createElement("BUTTON");
+    newBtn11.setAttribute("class", "submit-btn", "type", "button");
+    newBtn11.innerHTML = `quest 13`;
+    btnCont.appendChild(newBtn11);
+    newBtn11.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(12, 12);
+    });
+  }
+
+  if (numOfQuestion >= 14) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn12 = document.createElement("BUTTON");
+    newBtn12.setAttribute("class", "submit-btn", "type", "button");
+    newBtn12.innerHTML = `quest 14`;
+    btnCont.appendChild(newBtn12);
+    newBtn12.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(13, 13);
+    });
+  }
+
+  if (numOfQuestion >= 15) {
+    let btnCont = quizInner.querySelector(".btns-container");
+    let newBtn12 = document.createElement("BUTTON");
+    newBtn12.setAttribute("class", "submit-btn", "type", "button");
+    newBtn12.innerHTML = `quest 15`;
+    btnCont.appendChild(newBtn12);
+    newBtn12.addEventListener("click", (eve) => {
+      eve.preventDefault();
+      setQuizDom(15, 15);
     });
   }
 }
@@ -343,17 +404,6 @@ const removeFromStorage = () => {
   localStorage.removeItem("quizSetup");
 };
 
-// alert
-function displayAlert(text, action) {
-  alert.textContent = text;
-  alert.classList.add(`alert-${action}`);
-  // remove alert
-  setTimeout(() => {
-    alert.textContent = "";
-    alert.classList.remove(`alert-${action}`);
-  }, 5000);
-}
-
 const getCountdown = () => {
   let timeOutContainer = document.querySelector(".set-time-out");
   setTimeout(function () {
@@ -373,27 +423,33 @@ const getCountdown = () => {
                       </div>
                        </div>`;
     let resetBtn = timeOutContainer.querySelector(".reset");
-    let restartBtn = timeOutContainer.querySelector(".restart");
-    let timeoutContents = timeOutContainer.querySelector(".timeout-contents");
     resetBtn.addEventListener("click", () => {
       removeFromStorage();
-    });
-    restartBtn.addEventListener("click", (eve) => {
-      eve.preventDefault();
-      quizInner.appendChild(quizContainer);
-      timeoutContents.remove();
-      getCountdown();
     });
   }, quizCountDown);
 };
 
 // seeting countdoun
-let getDuration = parseFloat(
-  (duration.innerText = `Duration: ${setupLocalStorage.quizDuration}`)
-);
+let deadline = parseInt(setupLocalStorage.quizDuration, 0);
+deadline *= 60;
+function checkTime() {
+  let seconds = duration.querySelector(".seconds");
+  const countdown = setInterval(() => {
+    deadline--;
+    seconds.innerHTML = `${deadline} seconds remaining`;
+    if (deadline <= 0) {
+      clearInterval(countdown);
+    }
+  }, 1000);
+}
 
-function setDuration() {
-  setInterval(() => {
-    getDuration--;
-  }, quizCountDown);
+// alert
+function displayAlert(text, action) {
+  alerts.textContent = text;
+  alerts.classList.add(`alert-${action}`);
+  // remove alert
+  setTimeout(() => {
+    alerts.textContent = "";
+    alerts.classList.remove(`alert-${action}`);
+  }, 5000);
 }
