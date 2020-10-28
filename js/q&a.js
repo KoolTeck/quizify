@@ -353,7 +353,7 @@ function addQuestions() {
     btnCont.appendChild(newBtn12);
     newBtn12.addEventListener("click", (eve) => {
       eve.preventDefault();
-      setQuizDom(15, 15);
+      setQuizDom(14, 14);
     });
   }
 }

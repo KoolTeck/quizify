@@ -213,6 +213,10 @@ input[type=number]::-webkit-inner-spin-button {
       position: relative;
  }
 
+ .form-group a {
+     color: var(--clr-black);
+ }
+
  select#testDuration+.select-arrow,
  select#qstnDuration+.select-arrow, 
   select#backGroundColor+.select-arrow,
@@ -304,4 +308,15 @@ p.alert {
 .alert-success {
     color: #155724;
     background: #d4edda;
+}
+
+
+/* media querries */
+@media screen and (max-width: 370px) {
+    select#testDuration+.select-arrow,
+    select#qstnDuration+.select-arrow,
+    select#backGroundColor+.select-arrow,
+    select#answerColor+.select-arrow{
+        display: none;
+    }
 }

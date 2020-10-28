@@ -150,7 +150,7 @@ Global Styles
 
        .form-control label {
            font-size: 1rem;
-           display: grid;
+           display: inline-grid;
        }
 
 
