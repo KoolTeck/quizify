@@ -243,6 +243,17 @@ Modal
     color: var(--clr-primary-5);
 }
 
+@media screen and (min-width: 350px) {
+    .modal-btn {
+        margin-left: 0;
+        font-size: 1.5rem;
+    }
+
+    .modal-container p {
+        font-size: 1rem;
+    }
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -273,8 +284,6 @@ Modal
     display: grid;
     place-items: center;
     position: relative;
-    scroll-behavior: smooth;
-    overflow: scroll;
     font-size: .8rem;
     padding: 10px;
     line-height: 23px;
