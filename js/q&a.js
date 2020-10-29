@@ -30,6 +30,9 @@ quizCountDown = quizCountDown * 60000;
 
 // event linsteners
 window.addEventListener("DOMContentLoaded", () => {
+  alert(
+    `Welcome to the questions and answer filling page simply click the instruction button to know how to fill in the details. The filling is based on WYIIWIG(What you input is what you get)`
+  );
   setupQuestnAndAns();
 });
 
@@ -453,3 +456,17 @@ function displayAlert(text, action) {
     alerts.classList.remove(`alert-${action}`);
   }, 5000);
 }
+
+// modal overlay
+const modalBtn = document.querySelector(".modal-btn");
+const modalOverlay = document.querySelector(".modal-overlay");
+const closeBtn = document.querySelector(".close-btn");
+console.log(modalBtn);
+modalBtn.addEventListener("click", (eve) => {
+  eve.preventDefault();
+  modalOverlay.classList.add("open-modal");
+});
+
+closeBtn.addEventListener("click", () => {
+  modalOverlay.classList.remove("open-modal");
+});

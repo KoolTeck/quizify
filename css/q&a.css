@@ -15,6 +15,7 @@ Variables
            /* primary/main color */
            --clr-primary-5: #49a6e9;
            --secondary-color: #ad390be8;
+           --clr-red-light: hsl(360, 71%, 66%);
            --clr-white: #fff;
            --clr-black: #222;
            --clr-grey: hsl(210, 36%, 96%);
@@ -51,7 +52,7 @@ Global Styles
            background: var(--clr-grey);
            color: var(--clr-black);
            line-height: 1.5;
-           font-size: 0.875rem;
+           font-size: 1rem;
        }
 
        ul {
@@ -222,6 +223,90 @@ Global Styles
 .answer-container:hover {
     cursor: pointer;
 }
+
+/*
+=============== 
+Modal
+===============
+*/
+
+.modal-btn {
+    margin-top: 1rem;
+    margin-left: 5rem;
+    background: var(--clr-primary-5);
+    border-color: var(--clr-primary-5);
+    color: var(--clr-white);
+}
+
+.modal-btn:hover {
+    background: transparent;
+    color: var(--clr-primary-5);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(73, 166, 233, 0.5);
+    display: grid;
+    place-items: center;
+    transition: var(--transition);
+    visibility: hidden;
+    z-index: -10;
+}
+
+/* OPEN/CLOSE MODAL */
+.open-modal {
+    visibility: visible;
+    z-index: 10;
+}
+
+.modal-container {
+    background: var(--clr-white);
+    border-radius: var(--radius);
+    width: 90vw;
+    height: auto;
+    max-width: var(--fixed-width);
+    text-align: center;
+    display: grid;
+    place-items: center;
+    position: relative;
+    scroll-behavior: smooth;
+    overflow: scroll;
+    font-size: .8rem;
+    padding: 10px;
+    line-height: 23px;
+}
+
+.modal-container ul {
+    list-style-type: upper-alpha;
+    padding: 5px;
+    text-align: left;
+}
+
+.modal-container p{
+    text-align: left;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    background: transparent;
+    border-color: transparent;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-btn:hover {
+    color: var(--clr-red-light);
+    transform: scale(1.3);
+}
+
 
        /* background color */
        .default {
