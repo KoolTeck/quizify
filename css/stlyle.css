@@ -313,11 +313,16 @@ p.alert {
 
 
 /* media querries */
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 470px) {
     select#testDuration+.select-arrow,
     select#qstnDuration+.select-arrow,
     select#backGroundColor+.select-arrow,
     select#answerColor+.select-arrow{
         display: none;
+    }
+
+    .section-center {
+        width: auto;
+        margin: 0 auto;
     }
 }

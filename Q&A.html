@@ -27,11 +27,13 @@
               <p>
                 It is advisable to get your question and answer list on paper before starting.
                 <br>
-                questions on this app are only in a single question to multiple options set.
+                Questions on this app are only in a single question to multiple options set.
                 <br>
-                Click the add more option button if need be. You can only add five options to a qustion.
-                <br>
-                Ensure you type the word (<b>ans</b>) at the front of the correct option. Do not include the word in bracket. <br>
+                Ensure you type the word (<b>ans</b>) at the front of the correct option. Do not include the word in bracket.
+                 <br>
+                 Ensure the page is not refreshed while filling the Q&A , when you refreshed you will have to start from the first qustion again.
+                  <br>
+                Refresh the page when done filling the questions and answers, then click start button to begin the quiz. <br>
                 Here's a typical correct question and answer format with four options:
               </p>
               <ul>
@@ -41,14 +43,17 @@
                 <li>Hpyper text editor </li> 
                 <li>Hpyper text make lang </li>
               </ul>
-              
               <button type="button" class="close-btn">
                 <i class="fas fa-times"></i>
               </button>
+              <button type="button" class="submit-btn" id="close2">
+                Close
+              </button>
+
             </div>
           </div>
         <div>
-            Enter <span class="quiz-amount">5</span> question(s) 
+            Enter <span class="quiz-amount">5</span> <span class="remaining"></span> question(s) 
         </div> 
               <div class="form-control">
               <label for="question">
@@ -57,7 +62,7 @@
             </div>
 
             <div>
-                      Enter <span class="answer-amount">4</span> multiple options 
+                      Enter <span class="answer-amount">4</span> multiple options. Ensure to put <b>ans</b> in front of the correct option. 
             </div>
         <div class="option-container"> 
             <div class="form-control">
@@ -81,13 +86,20 @@
     " required ></textarea>
               </label>
             </div>
+            <div class="form-control">
+              <label for="answer" >  
+                <textarea name="answer" class="answer" id="answerThree"  cols="30" rows="4" placeholder=
+                "(d) hybrid multi langs
+    " required ></textarea>
+              </label>
+            </div>
         </div>
         <!-- end otptions -->
         <!-- add and remove buttons -->
-        <div class="toggle-container">
+        <!-- <div class="toggle-container">
           <span class="remove-answer">  <i class="fas fa-minus-square"></i>  remove answer</span>
          <span class="add-answer"><i class="fas fa-plus-square"></i>   add answer</span>
-        </div>
+        </div> -->
 
        <!-- button container -->
        <div class="QAndABtn-container">

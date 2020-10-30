@@ -5,7 +5,7 @@ const plusBtnTwo = document.querySelector(".add");
 const minusBtn = document.querySelector(".minus");
 const minusBtnTwo = document.querySelector(".sub");
 const quizSetupForm = document.querySelector(".setup-form");
-const alert = document.querySelector(".alert");
+const alerts = document.querySelector(".alert");
 
 // quiz setup user inputs
 
@@ -20,8 +20,14 @@ const quizSetupSubmitBTn = document.querySelector(".submit-btn");
 
 // global variables
 let quizSetupDetails = [];
+
 // event listeners
-document.addEventListener("DOMContentLoaded", setupQuiz);
+document.addEventListener("DOMContentLoaded", () => {
+  setupQuiz();
+  alert(
+    "Welcome to qui-zify! A simple quiz building app. Fill the details of your quiz to begin"
+  );
+});
 
 plusBtnOne.addEventListener("click", counter);
 minusBtn.addEventListener("click", counter);
@@ -88,12 +94,12 @@ function counter2(Event) {
 
 // alert
 function displayAlert(text, action) {
-  alert.textContent = text;
-  alert.classList.add(`alert-${action}`);
+  alerts.textContent = text;
+  alerts.classList.add(`alert-${action}`);
   // remove alert
   setTimeout(() => {
-    alert.textContent = "";
-    alert.classList.remove(`alert-${action}`);
+    alerts.textContent = "";
+    alerts.classList.remove(`alert-${action}`);
   }, 4000);
 }
 // set local storage

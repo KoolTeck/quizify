@@ -1,14 +1,15 @@
 // Q & A form input variables
+const appContainer = document.querySelector(".section-center");
 const questnAndAnswerForm = document.querySelector(".QandA-form");
 const alerts = document.querySelector(".alert");
 const quizQuestion = document.getElementById("question");
 const quizAnswers = document.getElementsByClassName("answer");
 const quizSetupBtn = document.getElementById("setupBtn");
 const quizStartBtn = document.getElementById("startBtn");
-const addAnswerBtn = document.querySelector(".toggle-container .add-answer");
-const removeAnswerBtn = document.querySelector(
-  ".toggle-container .remove-answer"
-);
+// const addAnswerBtn = document.querySelector(".toggle-container .add-answer");
+// const removeAnswerBtn = document.querySelector(
+//   ".toggle-container .remove-answer"
+// );
 
 // global variables
 let quizInner = document.querySelector(".start-quiz");
@@ -28,25 +29,29 @@ let questnAndAnslocal = JSON.parse(localStorage.getItem("questnAndans"));
 let quizCountDown = parseInt(setupLocalStorage.quizDuration, 0);
 quizCountDown = quizCountDown * 60000;
 
-// event linsteners
+// event listeners
 window.addEventListener("DOMContentLoaded", () => {
-  alert(
-    `Welcome to the questions and answer filling page simply click the instruction button to know how to fill in the details. The filling is based on WYIIWIG(What you input is what you get)`
-  );
   setupQuestnAndAns();
 });
 
 // functions
 function setupQuestnAndAns() {
   // updating question and answer count
-  quizAmount.textContent = setupLocalStorage.numOfQuiz;
+  quizAmount.textContent = parseInt(setupLocalStorage.numOfQuiz);
   answerAmount.textContent = setupLocalStorage.numOfOptions;
 
   quizSetupBtn.addEventListener("click", (eve) => {
     eve.preventDefault();
     addQuizQandA();
+    reduceQstn();
   });
 }
+
+const reduceQstn = () => {
+  const addRemain = document.querySelector(".remaining");
+  quizAmount.textContent--;
+  addRemain.innerText = "remaining";
+};
 
 const addQuizQandA = () => {
   // const answerOne = optionContainer.querySelector("#answerOne");
@@ -62,42 +67,63 @@ const addQuizQandA = () => {
     quizAnswers: answer,
   };
   questnAndAnswers.push(formReply);
-  if (quizQuestion.value === "" || answerThree.value === "") {
+  if (quizQuestion.value.trim() === "" || answerThree.value.trim() === "") {
     displayAlert("please fill all fields", "danger");
     questnAndAnswerForm.reset();
   } else if (quizQuestion.value === "" || answerThree.value !== "") {
     addToLocalStorage();
     questnAndAnswerForm.reset();
     displayAlert(
-      "question and answer added, add more question or start quiz",
+      "question and answer added, add more question or refresh to start quiz",
       "success"
     );
   }
 };
 
 // adding more options
-addAnswerBtn.addEventListener("click", (eve) => {
+// addAnswerBtn.addEventListener("click", (eve) => {
+//   eve.preventDefault();
+//   addOptions();
+// });
+// const addOptions = () => {
+//   let numOfOptions = parseInt(setupLocalStorage.numOfOptions);
+//   if (numOfOptions > 3) {
+//     let NewOption = `
+//       <div class="form-control">
+//               <label for="answer" >
+//                 <textarea name="answer" class="answer" cols="30" rows="4" placeholder=
+//                 "(d) input more option
+//     " required ></textarea>
+//               </label>
+//       </div>
+//     `;
+//     optionContainer.innerHTML += NewOption;
+//     removeAnswerBtn.addEventListener("click", () => {
+//       optionContainer.lastElementChild.remove();
+//     });
+//   }
+// };
+
+// modal overlay for quiz setup instructions
+const modalBtn = document.querySelector(".modal-btn");
+const modalOverlay = document.querySelector(".modal-overlay");
+const closeBtn = document.querySelector(".close-btn");
+const closeBtn2 = document.getElementById("close2");
+modalBtn.addEventListener("click", (eve) => {
   eve.preventDefault();
-  addOptions();
+  modalOverlay.classList.add("open-modal");
+  alert(
+    "`Welcome to the questions and answer filling page simply read through the instructions to know how to fill in the details. The filling is based on WYIIWYG(What you input is what you get"
+  );
 });
-const addOptions = () => {
-  let numOfOptions = parseInt(setupLocalStorage.numOfOptions);
-  if (numOfOptions > 3) {
-    let NewOption = `
-      <div class="form-control">
-              <label for="answer" >  
-                <textarea name="answer" class="answer" cols="30" rows="4" placeholder=
-                "(d) input more option
-    " required ></textarea>
-              </label>
-      </div>
-    `;
-    optionContainer.innerHTML += NewOption;
-    removeAnswerBtn.addEventListener("click", () => {
-      optionContainer.lastElementChild.remove();
-    });
-  }
-};
+
+closeBtn.addEventListener("click", () => {
+  modalOverlay.classList.remove("open-modal");
+});
+
+closeBtn2.addEventListener("click", () => {
+  modalOverlay.classList.remove("open-modal");
+});
 
 // starting quiz
 
@@ -118,6 +144,7 @@ const startQuiz = () => {
   quizInner.style.background = `${setupLocalStorage.quizBackgroundColor}`;
   quizSubject.innerText = `subject: ${setupLocalStorage.quizSubject}`;
   quizAuthor.innerText = `author: ${setupLocalStorage.quizAuthor}`;
+  // getting the quiz contents from the Dom
   if (questnAndAnslocal[0]) {
     setQuizDom(0, 0);
   }
@@ -125,13 +152,18 @@ const startQuiz = () => {
   checkTime();
 };
 
+// getting the quiz contents from the Dom
 function setQuizDom(index, index0) {
-  let questions = questnAndAnslocal[index].quizQuestion;
+  let questions =
+    questnAndAnslocal[index].quizQuestion; /* getting a single question*/
+  /* getting a list of option particular to the single question*/
   let answer1 = questnAndAnslocal[index0].quizAnswers[0];
   let answer2 = questnAndAnslocal[index0].quizAnswers[1];
   let answer3 = questnAndAnslocal[index0].quizAnswers[2];
+  let answer4 = questnAndAnslocal[index0].quizAnswers[3];
 
-  let qsnAndansDom = ` <!-- qustion one start -->
+  // adding the question and options to the DOM
+  let qsnAndansDom = ` <!-- question one start -->
             <div>
                 <p> ${questions}</p>
             </div>
@@ -145,12 +177,16 @@ function setQuizDom(index, index0) {
                     <label for="answer-one" data-id="id1"  > ${answer1} </label>
                    </div>
                     <div class="form-group">  
-                    <input type="radio"  class="labelStyle" name="." id="answer-one">
+                    <input type="radio"  class="labelStyle" name="." id="answer-two">
                     <label for="answer-one" data-id="id2" > ${answer2} </label>
                    </div>
                   <div class="form-group">  
-                    <input type="radio" class="labelStyle" name="." id="answer-one">
+                    <input type="radio" class="labelStyle" name="." id="answer-three">
                     <label data-id="id3" for="answer-one"> ${answer3} </label>
+                   </div>
+                  <div class="form-group">  
+                    <input type="radio" class="labelStyle" name="." id="answer-four">
+                    <label data-id="id3" for="answer-one"> ${answer4} </label>
                    </div>
                 </div>
                    
@@ -167,11 +203,11 @@ function setQuizDom(index, index0) {
             </div>`;
   quizContent.innerHTML = qsnAndansDom;
   let answerContainer = quizContent.querySelector(".answer-container");
-  // adding more answers
-  addAnswers();
 
+  // adding the answer formating
   formartOptions(answerContainer);
 
+  // getting the remaining question from the local storage
   nextBtn = quizInner.querySelector(".btns-container .btn2");
   let btnCont = quizInner.querySelector(".btns-container");
   nextBtn.addEventListener("click", (eve) => {
@@ -190,29 +226,6 @@ function setQuizDom(index, index0) {
 
   // adding more questions
   addQuestions();
-}
-
-function addAnswers() {
-  let answerContainer = quizContent.querySelector(".answer-container");
-  let numOfOptions = parseInt(setupLocalStorage.numOfOptions);
-
-  if (numOfOptions === 4) {
-    let answer4 = questnAndAnslocal[3].quizAnswers[3];
-    let otherOptionOne = `  <div class="form-group">
-                    <input type="radio" class="labelStyle" name="." id="answer-one">
-                    <label data-id="id" for="answer-one"> ${answer4} </label>
-                   </div>`;
-
-    answerContainer.innerHTML += otherOptionOne;
-    // formartOptions(answerContainer);
-  } else if (numOfOptions === 5) {
-    let answer5 = questnAndAnslocal[4].quizAnswers[4];
-    let otherOptionTwo = ` <div class="form-group">
-                    <input type="radio" class="labelStyle" name="." id="answer-one">
-                    <label data-id="id" for="answer-one"> ${answer5} </label>
-                   </div>`;
-    answerContainer.innerHTML += otherOptionTwo;
-  }
 }
 
 function addQuestions() {
@@ -361,13 +374,14 @@ function addQuestions() {
   }
 }
 
+// formatting the options to get answer
 function formartOptions(answerContainer) {
   let options = quizInner.querySelectorAll(".answer-reply label");
   let inputs = [...answerContainer.getElementsByClassName("labelStyle")];
   options.forEach((option) => {
-    if (option.textContent.includes(`answer`)) {
+    if (option.textContent.includes(`ans`)) {
       let getOption = option.innerText.toString();
-      getOption = getOption.replace("answer", "`");
+      getOption = getOption.replace("ans", "`");
       option.innerText = getOption;
       inputs.map((input) => {
         checkBtn = quizInner.querySelector(".btns-container .btn1");
@@ -379,6 +393,7 @@ function formartOptions(answerContainer) {
     }
   });
 
+  // updating the correct answer from the option's list
   const checkAnswer = (input) => {
     if (input.checked) {
       let items = [...options];
@@ -397,20 +412,23 @@ function formartOptions(answerContainer) {
   };
 }
 
-// local storage
+// adding the form reply to the local storage
 function addToLocalStorage() {
   localStorage.setItem("questnAndans", JSON.stringify(questnAndAnswers));
 }
 
+// removing the reply from the local storage
 const removeFromStorage = () => {
   localStorage.removeItem("questnAndans");
   localStorage.removeItem("quizSetup");
 };
 
+// updating the duration of the quiz
 const getCountdown = () => {
   let timeOutContainer = document.querySelector(".set-time-out");
   setTimeout(function () {
     quizContainer.remove();
+    appContainer.style.marginTop = "8rem";
     timeOutContainer.innerHTML = `
                        <div class= "timeout-contents">
                            <p>Time elapsed</p>
@@ -432,7 +450,7 @@ const getCountdown = () => {
   }, quizCountDown);
 };
 
-// seeting countdoun
+// setting countdoun
 let deadline = parseInt(setupLocalStorage.quizDuration, 0);
 deadline *= 60;
 function checkTime() {
@@ -457,16 +475,25 @@ function displayAlert(text, action) {
   }, 5000);
 }
 
-// modal overlay
-const modalBtn = document.querySelector(".modal-btn");
-const modalOverlay = document.querySelector(".modal-overlay");
-const closeBtn = document.querySelector(".close-btn");
-console.log(modalBtn);
-modalBtn.addEventListener("click", (eve) => {
-  eve.preventDefault();
-  modalOverlay.classList.add("open-modal");
-});
+// function addAnswers() {
+//   let answerContainer = quizContent.querySelector(".answer-container");
+//   let numOfOptions = parseInt(setupLocalStorage.numOfOptions);
 
-closeBtn.addEventListener("click", () => {
-  modalOverlay.classList.remove("open-modal");
-});
+//   if (numOfOptions === 4) {
+//     let answer4 = questnAndAnslocal[3].quizAnswers[3];
+//     let otherOptionOne = `  <div class="form-group">
+//                     <input type="radio" class="labelStyle" name="." id="answer-one">
+//                     <label data-id="id" for="answer-one"> ${answer4} </label>
+//                    </div>`;
+
+//     answerContainer.innerHTML += otherOptionOne;
+// formartOptions(answerContainer);
+//   } else if (numOfOptions === 5) {
+//     let answer5 = questnAndAnslocal[4].quizAnswers[4];
+//     let otherOptionTwo = ` <div class="form-group">
+//                     <input type="radio" class="labelStyle" name="." id="answer-one">
+//                     <label data-id="id" for="answer-one"> ${answer5} </label>
+//                    </div>`;
+//     answerContainer.innerHTML += otherOptionTwo;
+//   }
+// }

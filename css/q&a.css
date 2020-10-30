@@ -278,15 +278,18 @@ Modal
     background: var(--clr-white);
     border-radius: var(--radius);
     width: 90vw;
-    height: auto;
+    height: 80vh;
     max-width: var(--fixed-width);
     text-align: center;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     place-items: center;
     position: relative;
     font-size: .8rem;
     padding: 10px;
-    line-height: 23px;
+    line-height: 25px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 
 .modal-container ul {
@@ -296,7 +299,7 @@ Modal
 }
 
 .modal-container p{
-    text-align: left;
+    text-align: justify;
 }
 
 .close-btn {
@@ -470,5 +473,21 @@ p.alert {
 
     p.alert {
         margin-top: .9rem;
+        height: auto;
+    }
+
+    .quiz-header {
+        display: flex;
+        flex-direction: column;
+        padding: .5rem;
+    }
+
+    .quiz-header article {
+        right: unset;
+    }
+
+    .quiz-content p {
+        margin-bottom: unset;
+        margin-top: 15px;
     }
 }
